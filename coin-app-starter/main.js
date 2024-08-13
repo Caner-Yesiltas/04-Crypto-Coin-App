@@ -94,13 +94,56 @@ if (filteredCoins.length === 0) {   // bu bir dizi dizinin uzunlugu yani indexi 
 
 };
 
+function isCoinAlreadyDisplayed(coin) {
+    
+    const displayedCoins = document.querySelectorAll('.coin');
+    
+  
+    for (const displayedCoin of displayedCoins) {
+        const coinName = displayedCoin.querySelector('.coin-name').textContent.toLowerCase();
+        if (coinName.includes(coin.name.toLowerCase())) {
+            return true; 
+        }
+    }
+    return false; 
+}
 
 function displayCoins(filteredCoins) {  // herhangi bir yerde tanimlanabilir bu fonksiyon globaldede 
     
-    coinList.innerHTML=""; // icine basacagimiz cardlarin dive ihtiyaci var ya da ulye bu div o div bu ul o ul ama html de ul bize gore iste bu ulnin icini baslangicta temizliyoruz. 
+    
 
     filteredCoins.forEach((coin) => {
+        if (isCoinAlreadyDisplayed(coin)) {
+            Swal.fire({
+                title: "Coin Already Displayed",
+                text: `The coin ${coin.name} is already displayed on the screen.`,
+                icon: "info",
+                footer: '<a href="#">You might want to check the existing list!</a>'
+            });
+            return; // Eğer coin zaten ekrandaysa, bu coin'i tekrar ekleme
+        }
+
+
         const li=document.createElement('li');
+        li.classList.add('coin');
+       
+        li.innerHTML += `<div class="remove-icon">
+                <i class="fas fa-window-close"></i>
+            </div>
+            <h2 class="coin-name">${coin.name} <sup>${coin.symbol}</sup></h2>
+            <div class="coin-temp">$${parseFloat(coin.price).toFixed(2)}</div>
+            <figure>
+                <img src="${coin.iconUrl}" alt="${coin.name}" class="coin-icon">
+                <figcaption>Change: ${coin.change}%</figcaption>
+            </figure>`;
+            coinList.appendChild(li);
+
+
+/* <div class="remove-icon">: Coin'i kaldırmak için bir ikon oluşturduk
+<h2 class="coin-name">: Coin'in adını ve sembolünü gösteriyor 
+<div class="coin-temp">: Coin'in fiyatını gösterir.  cssde zaten tanimlanmis onceden   */ 
+
+
     })
 }
 
