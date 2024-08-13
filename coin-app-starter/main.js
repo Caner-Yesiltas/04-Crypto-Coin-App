@@ -13,17 +13,18 @@ e.preventDefault(); // burasi cok onemli tarayicinin varsayilan davranisi FORM I
  // sayfayi yeniler tarayici bizde tarayicinin sayfayi yenilemesini iptal ediyoruz !!!
                             
 
-const userInput = coinInput.trim().toLowerCase()   // girilen bilgi inputa bosluksuz ve kucukharfle olsun
+const userInput = coinInput.value.trim().toLowerCase()   // girilen bilgi inputa bosluksuz ve kucukharfle olsun
 
 if (!userInput) {       
-
+                                        //6.part
     Swal.fire({
         icon: "error",
         title: "Oops, Elon Musk is Confused!",
-        text: "Looks like the coin you searched for doesn't exist. Did you mean to search for 'Dogecoin'? Elon might have misheard you over the rocket engines! 😉🚀",
-        footer: '<a href="#">Tips for effective coin searching</a>'
+        text: "Did you mean to search for 'Dogecoin'? Elon might have misheard you over the rocket engines! 😉🚀",
+        footer: '<a href="#">~ Tips For Effective Coin Searching HERE! ~ </a>'
       });
     
+      return;
 }
 
     const coinRankApiKey = "coinrankingfd080161bf3c6e9f143e6efa86956b64e891529ed7b1315c";     //3.part
@@ -42,13 +43,18 @@ fetch(coinRankUrl)
     return res.json();
 })
 
-                                            //4.PART
-.then((data) => {
+      //4.PART
+.then((data) => {     
 
   
-    console.log("API Response:", data);  // butona tiklamadan buradan gelen api degerlerini goremeyiz api degerleri butona tiklaninca geliyor
-    
+    console.log("API Response:", data);  // butona tiklamadan buradan gelen api degerlerini goremeyiz api degerleri butona tiklaninca geliyor iceriginde ne oldugunu goruruz 
+    //debugging yaparken yani hata ayiklamada iyidir
     //buraya istedigimiz islem yazilir verinin alindigi kisim
+
+//7.part tekrar yaziyoruz artik datayi aldik onu filtreleyip basacagiz
+
+
+
 })
 
 .catch((error) => {
@@ -62,9 +68,6 @@ fetch(coinRankUrl)
 
 
 };
-
-
-
 
 
 
