@@ -2,7 +2,7 @@
 
 const coinInput = document.getElementById("input");   //1. part
 const coinBtn = document.getElementById("btn");
-
+const coinList = document.querySelector('.coins');
 
 
 
@@ -67,7 +67,7 @@ const filteredCoins = coins.filter((coin) => {
     // SYMBOL keylerini al kucukharf yap ve sonra kullanicinin girdigi bilgilerle uyusuyormu bak bu iki uyusmadan biri varsa return ile bize geri dondur ! 
 })
 
-if (filteredCoins.length === 0) {
+if (filteredCoins.length === 0) {   // bu bir dizi dizinin uzunlugu yani indexi sifirsa bu da demek ki icinde coin yok ise ! 
     Swal.fire({
         title: "Oops! Coin Not Found",
         text: "Looks like this coin is playing hide and seek!",
@@ -75,7 +75,7 @@ if (filteredCoins.length === 0) {
         footer: "Maybe it's just shy... or saving up for a grand entrance! 🚀💰"
     });
 } else {
-    displayCoins(filteredCoins);
+    displayCoins(filteredCoins); // coin var ise zaten card icine basicaz buradaki fonksiyon ile bu diziyi fonksiyona parametre olarak gececegiz
 }
 
 
@@ -95,7 +95,14 @@ if (filteredCoins.length === 0) {
 };
 
 
+function displayCoins(filteredCoins) {  // herhangi bir yerde tanimlanabilir bu fonksiyon globaldede 
+    
+    coinList.innerHTML=""; // icine basacagimiz cardlarin dive ihtiyaci var ya da ulye bu div o div bu ul o ul ama html de ul bize gore iste bu ulnin icini baslangicta temizliyoruz. 
 
+    filteredCoins.forEach((coin) => {
+        const li=document.createElement('li');
+    })
+}
 
 
 
