@@ -4,6 +4,16 @@
   box-sizing: border-box;
 }
 
+body{
+  background-image: url(../img/giphy\ \(2\).webp) !important;
+  background-repeat: no-repeat!important;
+ background-position: 80.15rem!important;
+  background-size: center!important ;
+  background-color: #ebd087 !important;
+  
+  
+}
+
 header {
   color: #1e2432;
 }

@@ -53,6 +53,31 @@ fetch(coinRankUrl)
 
 //7.part tekrar yaziyoruz artik datayi aldik onu filtreleyip basacagiz
 
+// datayi consolede goster parametre adi verdik bundan burada cikti de
+
+const coins =data.data.coins; // data parametresiyle apidan gelen veriye ulasiyoruz bu veride data objectsi tanimlanmis objenin icinde data ve status adinda iki
+// deger var bunlari . yontemi ile cekiyoruz ozelliklerini artik yeni degiskenimiz coins coins bir dizidir bunuda api belgelerinden ya da yaniti konsola basarak anlariz
+
+const filteredCoins = coins.filter((coin) => {
+
+    return  coin.name.toLowerCase().includes(userInput) || coin.symbol.toLowerCase().includes(userInput)  
+
+    // coin.name coins dizisindeki her bir elemani temsil eder ve bu dizinin icinde name bir keydir namen degeri coin isimleridir bitcoin dodgecoin gibi bize bu nameler lazim
+    // bu nameleri al kucuk harf yap ve userinputdaki deger ile aynimi ya da icerip iceriyormu bak VEYA 
+    // SYMBOL keylerini al kucukharf yap ve sonra kullanicinin girdigi bilgilerle uyusuyormu bak bu iki uyusmadan biri varsa return ile bize geri dondur ! 
+})
+
+if (filteredCoins.length === 0) {
+    Swal.fire({
+        title: "Oops! Coin Not Found",
+        text: "Looks like this coin is playing hide and seek!",
+        icon: "question",
+        footer: "Maybe it's just shy... or saving up for a grand entrance! 🚀💰"
+    });
+} else {
+    displayCoins(filteredCoins);
+}
+
 
 
 })
