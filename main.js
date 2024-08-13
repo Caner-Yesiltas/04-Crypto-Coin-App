@@ -88,16 +88,19 @@ function coinSearch(e) {
 }
 
 function isCoinAlreadyDisplayed(coin) {
-  const displayedCoins = document.querySelectorAll(".coin");
+  // bir fonksiyon ekranda gosterilip gosterilmedigini anlamamiz icin bu fonksiyonu kullaniyoruz
+  const displayedCoins = document.querySelectorAll(".coin"); // tum coinleri kapsayan ana classi seciyoruz burada   ???
 
-  for (const displayedCoin of displayedCoins) {
-    const coinName = displayedCoin
-      .querySelector(".coin-name")
-      .textContent.toLowerCase();
+  for (const existingCoinElement of displayedCoins) {
+    //for of dongusu yazilmis displayedCoinins tum coinleri kapsayan secildi cunku yazildi daha once
+    const coinName = existingCoinElement // yazilmis olan yerin indexi lazim diyoruz ki buradaki indexi getir
+      .querySelector(".coin-name") //  Döngü, bu listedeki her bir elementi sırayla existingCoinElement  değişkenine atar.
+      .textContent.toLowerCase(); // isim ile aratacagimiz ve ayni isim cikabilir diye hem kucuk harf hem de isme ait classi seciyoruz
     if (coinName.includes(coin.name.toLowerCase())) {
+      // coin.name nereden geldi filtred coindeki coin bu
       return true;
-    }
-  }
+    } // KISACA OLAY SU BURADA DISPLAYEDCOINS COINLER YAZILMIS FONKSIYONU VAR ICINDEN kucukharfli ve isim olanlarin indexini yeni existinoncoinelemnte bas diyoruz
+  } // BUNUDA Coinname degiskenine atiyoruz!!!!
   return false;
 }
 
@@ -140,8 +143,11 @@ function displayCoins(filteredCoins) {
       // arrow function click olayinin gerceklesmesini bekler hemen cagirmaz fonksiyonu bu yuzden arrow function ile yazariz
       // arrow funcutonu suslu parantez gibi dusunebiliriz suslu parantez icerisindeyken isleme aliyorduk yani arrow function var ise ondan onceki olayin baslamasi lazim
       // kisaca konu cok karisik bilinmesi gereken sey parametre var ise fonksiyonda event olaylarinda arrow function kullaniriz direk calismasin diye
+
+      // bu arada removeCoin liyi inner ile cardlari bastiktan sonra hemen eklememizin sebebi fonksiyon icinde degiskenlere ulasalim scope kavrami cok etkili
     });
-    coinList.appendChild(li);
+    coinList.appendChild(li); // neden coinlistin icine bu eklemis oldugumuz event listeneri koyuyoruz cunku en yakinimizda o var, baska bir doom elementinede koyabilirdik
+    //amac burada bir doom elementine bu eklemis oldugumuz eventi eklemek ???
   });
 }
 
