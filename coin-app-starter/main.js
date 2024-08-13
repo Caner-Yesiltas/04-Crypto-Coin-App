@@ -1,28 +1,39 @@
 //? MAIN.JS
 
-const CoinInput = document.getElementById("input");   //1. part
-const CoinBtn = document.getElementById("btn");
+const coinInput = document.getElementById("input");   //1. part
+const coinBtn = document.getElementById("btn");
 
 
 
 
-function CoinSearch (e) {
+function coinSearch (e) {
                               //5.part 
                                 
 e.preventDefault(); // burasi cok onemli tarayicinin varsayilan davranisi FORM ICIN buton maglum formun icindedir butona tikladigimizda formunu icinde oldugu icin buton
-console.log("Arama butonu tıklandı"); // sayfayi yeniler tarayici bizde tarayicinin sayfayi yenilemesini iptal ediyoruz !!!
+ // sayfayi yeniler tarayici bizde tarayicinin sayfayi yenilemesini iptal ediyoruz !!!
                             
 
+const userInput = coinInput.trim().toLowerCase()   // girilen bilgi inputa bosluksuz ve kucukharfle olsun
 
+if (!userInput) {       
 
-    const CoinRankApiKey = "coinrankingfd080161bf3c6e9f143e6efa86956b64e891529ed7b1315c";     //3.part
+    Swal.fire({
+        icon: "error",
+        title: "Oops, Elon Musk is Confused!",
+        text: "Looks like the coin you searched for doesn't exist. Did you mean to search for 'Dogecoin'? Elon might have misheard you over the rocket engines! 😉🚀",
+        footer: '<a href="#">Tips for effective coin searching</a>'
+      });
+    
+}
+
+    const coinRankApiKey = "coinrankingfd080161bf3c6e9f143e6efa86956b64e891529ed7b1315c";     //3.part
   
-    const CoinRankUrl = `https://api.coinranking.com/v2/coins?limit=100&offset=0&api_key=${CoinRankApiKey}`; // url nasil alinir dokumantasyonu end pointleri anlat
+    const coinRankUrl = `https://api.coinranking.com/v2/coins?limit=100&offset=0&api_key=${coinRankApiKey}`; // url nasil alinir dokumantasyonu end pointleri anlat
 // base urlye degin ? ve & yapilarini ? sorgu belirtir & parametreleri ayirir birden fazla https://api.coinranking.com/v2/coins?limit=100&offset=0& burasi ilk 100 coin degeri
 // api_key=${CoinRankApiKey} kullanicinin aradigi coin degerleri islesen degerleri bize getiriyor.
 
 
-fetch(CoinRankUrl)
+fetch(coinRankUrl)
 
 .then((res) => {
     if (!res.ok) {
@@ -64,5 +75,5 @@ fetch(CoinRankUrl)
 
   //2.part
 
-CoinBtn.addEventListener('click' , CoinSearch );
+coinBtn.addEventListener('click' , coinSearch );
 
