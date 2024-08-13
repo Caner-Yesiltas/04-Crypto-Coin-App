@@ -134,27 +134,19 @@ function displayCoins(filteredCoins) {
 <div class="coin-temp">: Coin'in fiyatını gösterir.  cssde zaten tanimlanmis onceden   */
 
     li.querySelector(".remove-icon").addEventListener("click", () => {
-      removeCoin(li, coin.name);
+      removeCoin(li); // simdi arrow function kullanilmis burada burasi asiri karisik anlayana kadar canim cikti
+      // bir fonksiyon parametre almaz ise direk tetiklenmez mesela coinBtn.addEventListener("click", coinSearch); gibi ama parametre alirsa li ve coinname gibi
+      // o zaman hemen cagirilir ve hemen cagirilirsa undefined doner bu yuzden hemen cagirilmasin diye arrow function ile yaptik
+      // arrow function click olayinin gerceklesmesini bekler hemen cagirmaz fonksiyonu bu yuzden arrow function ile yazariz
+      // arrow funcutonu suslu parantez gibi dusunebiliriz suslu parantez icerisindeyken isleme aliyorduk yani arrow function var ise ondan onceki olayin baslamasi lazim
+      // kisaca konu cok karisik bilinmesi gereken sey parametre var ise fonksiyonda event olaylarinda arrow function kullaniriz direk calismasin diye
     });
     coinList.appendChild(li);
   });
 }
 
-function removeCoin(coinElement, coinName) {
-  // Kullanıcının silmek istediği coin'i listeye eklenmiş listeden kaldırir
-  const coinIndex = Array.from(coinList.children).indexOf(coinElement);
-  if (coinIndex !== -1) {
-    coinList.removeChild(coinElement);
-  }
-
-  // Silinen coin'in adını 'coinsInList' dizisinden de kaldırir
-  const coinsInList = Array.from(document.querySelectorAll(".coin")).map((li) =>
-    li.querySelector(".coin-name").textContent.toLowerCase()
-  );
-  const coinNameIndex = coinsInList.indexOf(coinName.toLowerCase());
-  if (coinNameIndex !== -1) {
-    coinsInList.splice(coinNameIndex, 1);
-  }
+function removeCoin(li) {
+  li.remove();
 }
 
 //2.part
